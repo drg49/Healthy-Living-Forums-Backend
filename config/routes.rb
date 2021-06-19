@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   resources :comments
   resources :posts
+  get "/comments/post/:id", to: "comments#postcomments"
   get "/posts/topic/:topic", to: "posts#showtopic" 
   post "/signup", to: "users#create"
   post "/login", to: "users#login"

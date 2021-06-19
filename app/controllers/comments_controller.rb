@@ -10,6 +10,10 @@ class CommentsController < ApplicationController
 
   # GET /comments/1 (The postID for that specific post the comment is being commented on)
   def show
+    render json: @comments
+  end
+
+  def postcomments
     comments = Comment.where(postid: params[:id]) #Get comments where the post ID = 4
     render json: comments
   end
