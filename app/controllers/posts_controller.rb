@@ -19,6 +19,11 @@ class PostsController < ApplicationController
     render json: posts
   end
 
+  def userposts
+    posts = Post.where(author: params[:author])
+    render json: posts
+  end
+
   # POST /posts
   def create
     @post = Post.new(post_params)
@@ -45,6 +50,11 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
+  end
+
+  def destroyall #destroy the post and the comments that relate to it.
+    Comment.where(postid: params[:id]).destroy_all
+    Post.where(id: params[:id]).destroy_all
   end
 
   private
